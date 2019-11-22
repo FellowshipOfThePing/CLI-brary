@@ -1,0 +1,28 @@
+# trash function - Moves argued files to .Trash directory
+# Serves as a safar alternative to rm
+trash() {
+        mv "$1" "/Users/Jeremy/.Trash"
+}
+
+
+# cs function - simple combo of cd and ls
+cs() {
+if [ -d $1 ]
+then
+	cd $1
+	ls $PWD
+fi
+}
+
+
+# mkcd - simple combo of mkdir and cd
+# Creates intermediate directories and ignore symbolic links
+mkcd(){
+	mkdir -p -- "$1" && cd -P -- "$1"
+}
+
+
+
+
+
+

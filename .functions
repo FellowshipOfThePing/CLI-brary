@@ -17,12 +17,35 @@ fi
 
 # mkcd - simple combo of mkdir and cd
 # Creates intermediate directories and ignore symbolic links
-mkcd(){
+mkcd() {
 	mkdir -p -- "$1" && cd -P -- "$1"
 }
 
 
+# environment on - finds the nearest python virtualenv and activates it
+# replaces source env_dir/bin/activate
+envon() {
+	# Should not run in home directory
+	if [ $(pwd) == $HOME ]
+	then
+		echo "Error: envon cannot be used in or above the ~ directory"
+		return 0
+	fi
 
-
-
+	echo "Looking for virtual Environments..."
+	
+	# Store find results in array, measure length
+	arr=( $(find . -name activate -type f) )
+	count=${#arr[@]}
+	
+	echo $count virtual environments found
+	
+	# activate first element in array
+	if [[ "$count" != "0" ]]
+	then
+		env=${arr[0]}
+		source $env
+		echo environment activated
+	fi
+}
 

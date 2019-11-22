@@ -3,11 +3,20 @@
 # turn off python/conda env - saves 9 whole key strokes
 alias off="deactivate"
 
-# numDir alias - just runs a python script.
+
+# numDir alias - runs a python script to number files in dir by "##. file" convention
 #numbering options:
 #   -a : By alpha
 #   -r : By reverse alpha
 #   -u : undo numbering
 alias numDir="python3 $HOME/bin/scripts/numDir.py"
+
+
+# myip - prints current private IP address
+alias myip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+
+
+# mypub - print current public I{ address
+alias mypub="dig @resolver1.opendns.com A myip.opendns.com +short -4"
 
 

@@ -29,7 +29,7 @@ envon() {
 	if [ $(pwd) == $HOME ]
 	then
 		echo "Error: envon cannot be used in or above the ~ directory"
-		return 0
+		return
 	fi
 
 	echo "Looking for virtual Environments..."

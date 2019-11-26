@@ -56,7 +56,7 @@ cleanDir() {
 		if [ ! -s "$file" ]; then
 			echo "$file moved to trash"
 			trash "$file"
-		elif [ \( -d "$file" \) -o \( ! "$(ls -A $file)" \) ]; then
+		elif [ \( -d "$file" \) -a \( ! "$(ls -A $file)" \) ]; then
 			echo "$file directory moved to trash"
 			trash "$file" 
 		fi

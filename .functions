@@ -49,3 +49,18 @@ envon() {
 	fi
 }
 
+
+# Clean CWD - checks for empty files and directories in CWD, and moves them to to trash
+cleanDir() {
+	for file in *; do
+		if [ ! -s "$file" ]; then
+			echo "$file moved to trash"
+			trash "$file"
+		elif [ \( -d "$file" \) -o \( ! "$(ls -A $file)" \) ]; then
+			echo "$file directory moved to trash"
+			trash "$file" 
+		fi
+	done
+}
+
+

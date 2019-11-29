@@ -51,8 +51,11 @@ envon() {
 
 
 # Clean CWD - checks for empty files and directories in CWD, and moves them to to trash
-cleanDir() {
-	for file in *; do
+cleanDir() (
+
+	# Private function used to check files
+	checkFile() {
+		file="$1"
 		if [ ! -s "$file" ]; then
 			echo "$file moved to trash"
 			trash "$file"
@@ -60,7 +63,34 @@ cleanDir() {
 			echo "$file directory moved to trash"
 			trash "$file" 
 		fi
-	done
-}
+	}
+
+
+	# multiple arguments passed - return error
+	if [ ${#@} -gt 1 ]; then
+		echo "Error: cleanDir command takes no arguments"
+
+	# One argument passed - clean argued dir (In testing, for now just returns error)
+	elif [ ${#@} == 1 ]; then
+		echo "Error: cleanDir command takes no arguments"
+	#	dir="$1"
+	#	for file in $dir; do
+	#		checkFile "$file"
+	#	done
+
+	# No argument - clean current dir
+	else
+		dir=$(pwd)
+
+		# Dir is not empty
+		if [ "$(ls -A $dir)" ]; then
+		for file in *; do
+			checkFile "$file"
+		done
+		else
+			echo "$dir is empty"
+		fi
+	fi
+)
 
 

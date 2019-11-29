@@ -9,7 +9,7 @@ alias off="conda deactivate"
 #   -a : By alpha
 #   -r : By reverse alpha
 #   -u : undo numbering
-alias numDir="python3 $HOME/bin/scripts/numDir.py"
+alias numDir="python3 $HOME/bin/CLI-brary/scripts/numDir.py"
 
 
 # myip - prints current private IP address
